@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="uz">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ElectroTools Studio 5.2 — Telefon va noutbuk uchun elektronika laboratoriyasi</title>
+  <meta name="description" content="Offline virtual electronics lab with circuit builder, calculators, formula library and experiment notebook.">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <button type="button" class="mobile-menu-button outline" id="mobileMenuToggle" aria-label="Menyuni ochish" aria-controls="appSidebar" aria-expanded="false"><span aria-hidden="true">☰</span></button>
+    <button class="brand" id="brandHome" aria-label="Home"><span class="brand-icon">⚡</span><span>ElectroTools <b>STUDIO 5.2</b></span></button>
+    <div class="top-actions">
+      <span class="product-status"><span class="online-dot"></span><span data-i18n="offlineReady">OFFLINE READY</span></span>
+      <span class="tiny top-caption" data-i18n="study">ELECTRONICS WORKBENCH</span>
+      <select id="language" aria-label="Language"><option value="uz">O‘zbekcha</option><option value="en">English</option><option value="ru">Русский</option></select>
+      <button id="themeToggle" class="outline" title="Theme">☾</button>
+    </div>
+  </header>
+  <button type="button" id="mobileNavBackdrop" class="mobile-nav-backdrop" aria-label="Menyuni yopish" tabindex="-1"></button>
+  <div class="shell">
+    <nav class="sidebar" id="appSidebar" aria-label="Asosiy navigatsiya">
+      <div class="section-label" data-i18n="navigation">BO‘LIMLAR</div>
+      <button class="nav active" data-page="home"><span>⌂</span><span data-i18n="home">Bosh sahifa</span></button>
+      <button class="nav" data-page="builder"><span>⌁</span><span data-i18n="builder">Sxema yig‘ish</span></button>
+      <button class="nav" data-page="labs"><span>⚗</span><span data-i18n="labs">Laboratoriyalar</span></button>
+      <button class="nav" data-page="tools"><span>▦</span><span data-i18n="tools">Uskuna va kalkulyatorlar</span></button>
+      <button class="nav" data-page="scope"><span>〰</span><span data-i18n="scope">Ossillograf</span></button>
+      <div class="section-label nav-subsection" data-i18n="referenceSection">MA'LUMOTNOMA</div>
+      <button class="nav" data-page="formulas"><span>∑</span><span data-i18n="formulas">Formulalar</span></button>
+      <button class="nav" data-page="notebook"><span>▤</span><span data-i18n="notebook">Lab jurnali</span></button>
+      <div class="sidebar-help" data-i18n="disclaimer">O‘quv simulyatori. Hisoblashlar soddalashtirilgan va haqiqiy elektr montaji uchun qo‘llanma emas.</div>
+    </nav>
+    <main>
+      <section id="home" class="page active">
+        <div class="hero hero-new">
+          <div><p class="eyebrow" data-i18n="study">ELECTRONICS WORKBENCH</p>
+            <h1 data-i18n="welcome">Elektronika laboratoriyasi va hisoblash uskunalari</h1>
+            <p class="muted" data-i18n="welcomeDesc">Sxema yig‘ing, detallarni ulang, kuchlanish va tokni o‘lchang, grafiklarni kuzating.</p>
+            <div class="hero-actions"><button class="primary" data-go="builder" data-i18n="startBuilding">Sxema yig‘ishni boshlash</button><button class="outline" data-go="formulas" data-i18n="browseFormulas">Formulalarni ko‘rish</button></div>
+          </div>
+          <div class="hero-art" aria-hidden="true"><div class="hero-meter">12.00 <small>V</small></div><div class="hero-resistor"></div><span class="hero-led"></span><span class="hero-pulse">∿</span></div>
+        </div>
+        <div class="dashboard-stats" aria-label="Workspace overview">
+          <div class="stat"><span data-i18n="availableParts">Elementlar</span><strong id="statParts">17</strong><small data-i18n="componentLibrary">Komponentlar katalogi</small></div>
+          <div class="stat"><span data-i18n="calculators">Kalkulyatorlar</span><strong id="statTools">28</strong><small data-i18n="instantCalculations">Darhol hisoblash</small></div>
+          <div class="stat"><span data-i18n="formulas">Formulalar</span><strong id="statFormulas">32</strong><small data-i18n="searchableReference">Qidiriladigan ma'lumotnoma</small></div>
+          <div class="stat"><span data-i18n="savedNotes">Saqlangan yozuvlar</span><strong id="statNotes">0</strong><small data-i18n="localNotebook">Mahalliy laboratoriya jurnali</small></div>
+        </div>
+        <h2 data-i18n="modules">Laboratoriya modullari</h2>
+        <div class="module-grid">
+          <button class="module" data-go="builder"><span class="module-icon">🔌</span><b data-i18n="builder">Sxema yig‘ish</b><small data-i18n="builderDesc">Sim bilan ulash, Undo/Redo va hisoblash</small></button>
+          <button class="module" data-go="labs"><span class="module-icon">⚗</span><b data-i18n="labs">Laboratoriyalar</b><small data-i18n="labsDesc">LED, sensor, RLC, transistor, logic</small></button>
+          <button class="module" data-go="tools"><span class="module-icon">🧮</span><b data-i18n="tools">Uskuna va kalkulyatorlar</b><small data-i18n="toolsDesc">Ohm, BJT, RMS, reaktans va boshqalar</small></button>
+          <button class="module" data-go="scope"><span class="module-icon">📈</span><b data-i18n="scope">Ossillograf</b><small data-i18n="scopeDesc">Zanjir signali va signal generatori</small></button>
+        </div>
+        <div class="quick-row"><div><h3 data-i18n="quickStart">Tez boshlash</h3><p class="muted" data-i18n="quickDesc">Tayyor sxema oching yoki kalkulyatorni tanlang.</p></div><div class="quick-buttons"><button class="outline" id="quickLed" data-i18n="loadLedExample">LED sxemasi</button><button class="outline" id="quickDivider" data-i18n="loadDividerExample">Kuchlanish bo‘luvchi</button><button class="outline" id="quickMath" data-i18n="mathcalc">Hisob-kitob kalkulyatori</button><button class="outline" data-go="notebook" data-i18n="openNotebook">Jurnalni ochish</button></div></div>
+        <div class="panel"><h3 data-i18n="supportedTitle">Ishlash imkoniyatlari</h3><p class="muted" data-i18n="supportedText">DC sxemalar uchun: bitta batareya, rezistor, LED, kalit, lampa, voltmetr, ampermetr, LDR va NTC. AC/RLC, BJT va mantiqiy elementlar uchun alohida tajribalar mavjud.</p></div>
+      </section>
+
+      <section id="builder" class="page">
+        <div class="page-head"><div><h1 data-i18n="builder">Sxema yig‘ish</h1><p class="muted" data-i18n="builderHelp">Detal tanlang va maydonga bosing. Kontaktlarni navbat bilan bosib sim ulang. Detallarni sudrang.</p></div></div>
+        <div class="builder-toolbar">
+          <button class="outline" id="undo" title="Ctrl+Z">↶ <span data-i18n="undo">Ortga</span></button>
+          <button class="outline" id="redo" title="Ctrl+Y">↷ <span data-i18n="redo">Oldinga</span></button>
+          <button class="outline" id="duplicatePart" data-i18n="duplicate">Nusxalash</button>
+          <button class="outline" id="deleteSelected" data-i18n="deleteSelected">Tanlanganni o‘chirish</button>
+          <button class="outline" id="newBoard" data-i18n="newBoard">Yangi sxema</button>
+          <button class="outline danger" id="clearAll" data-i18n="clearAll">Hammasini tozalash</button>
+          <button class="outline" id="viewMode" data-i18n="showSchematic">Sxema ko‘rinishi</button>
+          <button class="outline" id="save" data-i18n="save">Saqlash</button>
+          <button class="outline" id="load" data-i18n="load">Yuklash</button><input id="loadFile" type="file" accept=".json,application/json" hidden>
+          <button class="primary" id="simulate" data-i18n="simulate">▶ Simulyatsiya</button>
+        </div>
+        <details class="lab-guide" id="labGuide"><summary data-i18n="guideTitle">Tajriba bo‘yicha ko‘rsatma</summary><div id="guideBody" class="muted"></div></details>
+        <div class="builder-grid">
+          <aside class="panel palette-panel"><h3 data-i18n="components">Detallar va uskunalar</h3><div id="palette" class="palette"></div><p class="muted small" data-i18n="paletteHelp">Detalni bosing, so‘ng sxema doskasiga bosing. Tanlangan detalni Delete bilan o‘chiring.</p><button id="demo" class="outline wide" data-i18n="loadDemo">LED namunasini ochish</button></aside>
+          <div class="editor-stack">
+            <div class="panel board-panel"><div class="board-head"><span id="status" class="status">● Tayyor</span><span id="wireHint" class="muted small" data-i18n="wireHint">Ulash uchun 2 ta kontaktni bosing</span><button class="outline compact" id="cancelWire" data-i18n="cancel">Bekor qilish</button></div>
+              <p class="mobile-board-hint">↔ Sxema keng: bo‘sh joyini yon tomonga suring. Detal kontaktlarini bosib sim ulang.</p><div class="board-scroll"><svg id="board" viewBox="0 0 1080 570" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Circuit editor"></svg></div>
+              <div class="legend"><span><i class="dot active-dot"></i><span data-i18n="flowLegend">Yashil animatsiya: tok yo‘li (taxminiy)</span></span><span><i class="dot idle-dot"></i><span data-i18n="offLegend">Kulrang: faol emas</span></span></div>
+            </div>
+            <div class="panel graph-panel"><div class="panel-heading"><div><h3 data-i18n="liveGraph">Jonli grafik: kuchlanish va tok</h3><p class="muted small" data-i18n="graphHelp">Yashil — batareya toki (mA), ko‘k — batareya kuchlanishi (V). Qiymat o‘zgarsa grafik yangilanadi.</p></div><div class="panel-actions"><button class="outline compact" id="exportGraphCSV" data-i18n="exportCSV">CSV eksport</button><button class="outline compact" id="captureLab" data-i18n="captureLab">Jurnalga yozish</button><button class="outline compact" id="resetGraph" data-i18n="resetGraph">Grafikni tozalash</button></div></div><canvas id="timeline" width="1100" height="255"></canvas><div class="graph-legend"><span>● I (mA)</span><span>● U (V)</span></div></div>
+          </div>
+          <aside class="panel inspector"><h3 data-i18n="properties">Detal xususiyatlari</h3><div id="properties" class="muted small" data-i18n="selectComponent">Detalni tanlang</div><hr><h3 data-i18n="measurements">O‘lchovlar</h3><div id="measurements"></div><div id="solverNote" class="note small"></div></aside>
+        </div>
+      </section>
+
+      <section id="labs" class="page"><h1 data-i18n="labs">Laboratoriyalar</h1><p class="muted" data-i18n="labsIntro">Tayyor tajribani tanlang; ba'zilari sxema muharririda, boshqalari interaktiv hisoblagichlarda ochiladi.</p>
+        <div class="module-grid lab-modules">
+          <button class="module" data-lab="led"><span class="module-icon">💡</span><b data-i18n="labLed">LED va kalit</b></button>
+          <button class="module" data-lab="divider"><span class="module-icon">🔋</span><b data-i18n="labDivider">Kuchlanish bo‘luvchi</b></button>
+          <button class="module" data-lab="ldr"><span class="module-icon">☀</span><b data-i18n="labLdr">Fotorezistor (LDR)</b></button>
+          <button class="module" data-lab="rlc"><span class="module-icon">∿</span><b data-i18n="labRlc">Series RLC</b></button>
+          <button class="module" data-lab="logic"><span class="module-icon">⊕</span><b data-i18n="labLogic">Logic gates</b></button>
+          <button class="module" data-lab="bjt"><span class="module-icon">♧</span><b data-i18n="labBjt">BJT Transistor</b></button>
+          <button class="module" data-lab="rc"><span class="module-icon">τ</span><b data-i18n="labRc">RC zaryadlanish</b></button>
+          <button class="module" data-lab="pwm"><span class="module-icon">▥</span><b data-i18n="labPwm">PWM boshqaruvi</b></button>
+        </div><div class="panel" id="labDetails"><p class="muted" data-i18n="chooseLab">Yuqoridan laboratoriya tanlang</p></div>
+      </section>
+
+      <section id="tools" class="page">
+        <div class="page-head"><div><p class="eyebrow" data-i18n="study">ELEKTRONIKA LABORATORIYASI</p><h1 data-i18n="tools">Uskuna va kalkulyatorlar</h1><p class="muted" data-i18n="toolsIntro">Electronics Toolbox uslubidagi mustaqil hisoblash uskunalari.</p></div><span class="count-chip" id="toolCount">0</span></div>
+        <div class="search-strip"><label class="search-box"><span>⌕</span><input id="toolSearch" type="search" data-i18n-placeholder="searchTools" placeholder="Kalkulyator qidirish..." autocomplete="off"></label>
+        <select id="toolCategory" aria-label="Calculator category"><option value="all" data-i18n="allCategories">Barcha yo‘nalishlar</option><option value="dc" data-i18n="catDc">DC & quvvat</option><option value="ac" data-i18n="catAc">AC & signallar</option><option value="components" data-i18n="catComponents">Komponentlar</option><option value="digital" data-i18n="catDigital">Raqamli</option></select></div>
+        <div class="tools-layout"><div class="tool-library"><div id="toolCards" class="tool-grid"></div><p class="muted small" id="toolsEmpty" hidden data-i18n="noSearchResults">Hech narsa topilmadi.</p></div>
+        <div class="panel tool-workspace" id="toolDetails"><p class="muted" data-i18n="chooseTool">Hisoblash uskunaini tanlang</p></div></div>
+      </section>
+
+      <section id="scope" class="page"><h1 data-i18n="scope">Ossillograf</h1><p class="muted" data-i18n="scopeIntro">Zanjirdagi real hisoblangan DC o‘lchovlar tarixini yoki mustaqil signal generatorini ko‘ring.</p><div class="panel"><div class="scope-bar"><label><span data-i18n="source">Manba</span><select id="scopeSource"><option value="circuit" data-i18n="circuitHistory">Sxema o‘lchovlari</option><option value="generator" data-i18n="generator">Signal generatori</option></select></label><label><span data-i18n="waveform">Signal turi</span><select id="wave"><option value="sine">Sine</option><option value="square">Square</option><option value="triangle">Triangle</option></select></label><label><span data-i18n="amplitude">Amplituda (V)</span><input id="amplitude" type="number" value="5" min="0" max="30" step="0.5"></label><label><span data-i18n="frequency">Chastota (Hz)</span><input id="frequency" type="number" value="50" min="0.1" max="100000" step="1"></label><button class="outline" id="pauseScope" data-i18n="pause">To‘xtatish</button></div><canvas id="oscilloscope" width="1150" height="410"></canvas><div id="scopeData" class="result"></div></div></section>
+
+      <section id="formulas" class="page">
+        <div class="page-head"><div><p class="eyebrow" data-i18n="referenceSection">MA'LUMOTNOMA</p><h1 data-i18n="formulaTitle">Elektronika formulalari</h1><p class="muted" data-i18n="formulaSubtitle">Formulalar, izohlar, birliklar va mos kalkulyatorlar bir joyda.</p></div><span class="count-chip" id="formulaCount">0</span></div>
+        <div class="search-strip"><label class="search-box"><span>⌕</span><input id="formulaSearch" type="search" placeholder="Formula qidirish..." data-i18n-placeholder="searchFormulas" autocomplete="off"></label>
+        <select id="formulaCategory" aria-label="Formula category"><option value="all" data-i18n="allCategories">Barcha yo‘nalishlar</option><option value="dc" data-i18n="catDc">DC & quvvat</option><option value="ac" data-i18n="catAc">AC & signallar</option><option value="components" data-i18n="catComponents">Komponentlar</option><option value="digital" data-i18n="catDigital">Raqamli</option></select></div>
+        <div class="formula-grid" id="formulaGrid"></div><p id="formulasEmpty" class="muted" hidden data-i18n="noSearchResults">Hech narsa topilmadi.</p>
+        <div class="disclaimer-panel"><strong data-i18n="learningNotice">O‘quv eslatmasi</strong><p data-i18n="referenceDisclaimer">Formulalar ideal yoki soddalashtirilgan modellarga asoslangan. Haqiqiy qurilmalar uchun ishlab chiqaruvchi ma'lumotlarini tekshirish kerak.</p></div>
+      </section>
+
+      <section id="notebook" class="page">
+        <div class="page-head"><div><p class="eyebrow" data-i18n="journalLabel">EXPERIMENT JOURNAL</p><h1 data-i18n="notebook">Laboratoriya jurnali</h1><p class="muted" data-i18n="notebookSubtitle">Tajriba, o‘lchovlar va xulosalarni brauzerda saqlang.</p></div><button id="exportNotebook" class="outline" data-i18n="exportNotes">Hisobotni eksport qilish</button></div>
+        <div class="notebook-grid"><div class="panel note-editor"><label for="noteTitle" data-i18n="experimentTitle">Tajriba nomi</label><input id="noteTitle" type="text" maxlength="100" placeholder="LED current measurement" value="LED circuit experiment"><label for="noteText" data-i18n="observations">Kuzatishlar va xulosalar</label><textarea id="noteText" rows="9" maxlength="10000" placeholder="Write results and observations..."></textarea><div class="note-actions"><button class="primary" id="saveNote" data-i18n="saveNote">Yozuvni saqlash</button><button class="outline" id="snapshotNote" data-i18n="captureReadings">Joriy o‘lchovni qo‘shish</button></div><p class="muted small" data-i18n="notebookPrivacy">Yozuvlar shu brauzerda saqlanadi va serverga yuborilmaydi.</p></div>
+        <div class="panel saved-notes"><div class="panel-heading"><h3 data-i18n="recentNotes">Oxirgi yozuvlar</h3><span class="count-chip" id="noteCount">0</span></div><div id="noteList" class="note-list"></div></div></div>
+      </section>
+    </main>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
